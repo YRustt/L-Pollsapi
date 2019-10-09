@@ -11,7 +11,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Computer Science/2. Django Rest Framework/pollsapi/requirements.txt" }}
+            - v1-dependencies-{{ checksum "pollsapi/requirements.txt" }}
             - v1-dependencies-
 
       - run:
@@ -19,18 +19,18 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r "Computer Science/2. Django Rest Framework/pollsapi/requirements.txt"
+            pip install -r "pollsapi/requirements.txt"
 
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "Computer Science/2. Django Rest Framework/pollsapi/requirements.txt" }}
+          key: v1-dependencies-{{ checksum "pollsapi/requirements.txt" }}
 
       - run:
           name: run tests
           command: |
             . venv/bin/activate
-            cd "Computer Science/2. Django Rest Framework/pollsapi"
+            cd "pollsapi"
             python manage.py test
 
       - store_artifacts:
